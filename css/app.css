@@ -173,7 +173,7 @@ header h1 {
 #starRating li {
 	display: inline-block;
 }
-.popup {
+.congrat_msg {
 	margin: 70px auto;
 	padding: 20px;
 	background: #ffffff;
@@ -184,13 +184,13 @@ header h1 {
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
   
-.popup h2 {
+.congrat_msg h2 {
 	text-align: center;
 	color: #02ccba;
 	font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .fa-times-circle {
+.congrat_msg .fa-times-circle {
 	position: absolute;
 	top: 20px;
 	right: 30px;
@@ -204,13 +204,13 @@ header h1 {
 	
 }
 
-.popup .fa-times-circle:hover {
+.congrat_msg .fa-times-circle:hover {
 	color:red;
 	background-color: #ffffff;
 	cursor: pointer;
 }
 
-.popup .msg_win,
+.congrat_msg .msg_win,
 .about_game {
 	max-height: 30%;
 	overflow: auto;
@@ -218,10 +218,10 @@ header h1 {
 	color: #02ccba
     
 }
-.popup .msg_win h4{
+.congrat_msg .msg_win h4{
 	color: #FFD700
 }
-.popup .about_game span{
+.congrat_msg .about_game span{
 	color: #FFD700;
 }
 #again {
