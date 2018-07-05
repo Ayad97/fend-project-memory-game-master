@@ -72,6 +72,28 @@ function increase_count(){
         }
         
     }
+    else if (moves >= 21  && moves < 32)
+    {
+        for( i= 0; i < 3; i++)
+        {
+            if(i == 0)
+            {
+                stars_fa[i].style.color = "#000";
+            }
+        }
+        
+    }
+    else if (moves >= 32)
+    {
+        for( i= 0; i < 3; i++)
+        {
+            if(i == 0)
+            {
+                stars_fa[i].style.color = "red";
+            }
+        }
+        
+    }
     
 }
 
