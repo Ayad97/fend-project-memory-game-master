@@ -127,7 +127,7 @@ header h1 {
 .score-panel .restart_game {
 	float: right;
 	cursor: pointer;
-	color: red;
+	color: #02ccba;
 }
 
 .fa-star {
