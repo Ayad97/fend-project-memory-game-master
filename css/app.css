@@ -90,7 +90,7 @@ header h1 {
 	animation-duration: .75s;
 }
 .deck .card.unmatched_card{
-	background: #110e0e;
+	background: #080404;
 	color: rgb(235, 73, 73);
 	animation:shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
 	backface-visibility: visible !important;
@@ -132,6 +132,7 @@ header h1 {
 
 .fa-star {
 	color: #FFD700;
+	border: 1px solid #ffffff
 }
 
 .timer {
