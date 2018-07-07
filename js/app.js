@@ -41,6 +41,42 @@ function shuffle(array) {
     return array;
 }
 //----------------------------------------------------------
+// function reset game while onclick fa-repeat
+document.body.onload = game(); 
+
+function game(){
+   
+    cards = shuffle(cards);
+    
+    for (var i = 0; i < 16; i++) 
+    {
+        decks.innerHTML ="";
+        [].forEach.call(cards, function(item) 
+        {
+            decks.appendChild(item);
+        });
+        
+        cards[i].classList.remove("show", "open", "match", "disabled");
+    }
+
+    sec = 0 , min=0 , H=0;
+    increase_timer.innerHTML = "0 minute(s) 0 second(s)";
+    sec++;
+    
+
+    moves = 0;
+    increase_moves.innerHTML = moves;
+
+    for (var i= 0; i < 3; i++) //stars_fa.lenght 
+    {
+        stars_fa[i].style.color = "gold";
+        stars_fa[i].style.visibility = "visible";
+    }
+
+    clearInterval(x) ;
+}
+//----------------------------------------------------------
+
 function increase_count(){
     moves++;
     increase_moves.innerHTML = moves ;
@@ -48,7 +84,7 @@ function increase_count(){
     if(moves == 1)
     {
         second = 0; minute = 0 ;  hour = 0;
-        startTimer();
+        begin_timer();
     }
 
     if ( moves > 8 && moves < 12 )
@@ -101,7 +137,7 @@ function increase_count(){
 var sec = 0 , min = 0 ; H = 0 ;
 var x;
 
-function startTimer() {
+function begin_timer() {
 
     x = setInterval(function()
     {
@@ -166,40 +202,6 @@ function open_card() {
 };
 
 //----------------------------------------------------------
-// function reset game while onclick fa-repeat
-document.body.onload = game(); 
-
-function game(){
-   
-    cards = shuffle(cards);
-    
-    for (var i = 0; i < 16; i++) 
-    {
-        decks.innerHTML ="";
-        [].forEach.call(cards, function(item) 
-        {
-            decks.appendChild(item);
-        });
-        
-        cards[i].classList.remove("show", "open", "match", "disabled");
-    }
-    moves = 0;
-    increase_moves.innerHTML = moves;
-
-    for (var i= 0; i < 3; i++)
-    {
-        stars_fa[i].style.color = "gold"
-        stars_fa[i].style.visibility = "visible";
-    }
-
-    timer = 0;
-    increase_timer.innerHTML = "0 minute(s) 0 second(s)";
-    
-
-    clearInterval(x) ;
-}
-//----------------------------------------------------------
-
 function disable_choice(){
     Array.prototype.filter.call(cards, function(check){
 
