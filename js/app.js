@@ -42,13 +42,13 @@ function shuffle(array) {
 }
 //----------------------------------------------------------
 // function reset game while onclick fa-repeat
-document.body.onload = game();
+document.body.onload = game(); 
 
 function game(){
    
     cards = shuffle(cards);
     
-    for (var i = 0; i < cards.length; i++) 
+    for (var i = 0; i < 16; i++) 
     {
         decks.innerHTML ="";
         [].forEach.call(cards, function(item) 
@@ -58,76 +58,150 @@ function game(){
         
         cards[i].classList.remove("show", "open", "match", "disabled");
     }
+
+    sec = 0 , min=0 , H=0;
+    increase_timer.innerHTML = "0 minute(s) 0 second(s)";
+    sec++;
+    
+
     moves = 0;
     increase_moves.innerHTML = moves;
 
-    for (var i= 0; i < stars_fa.length; i++)
+    for (var i= 0; i < 3; i++) //stars_fa.lenght 
     {
-        stars_fa[i].style.color = "gold"
+        stars_fa[i].style.color = "gold";
         stars_fa[i].style.visibility = "visible";
     }
-
-    timer = 0;
-    increase_timer.innerHTML = "0 minute(s) 0 second(s)";
-    
 
     clearInterval(x) ;
 }
 //----------------------------------------------------------
-//toggle between classes for display card
-var display_card = function ()
-{
-    this.classList.toggle("open");
-    this.classList.toggle("show");
-    this.classList.toggle("disabled");
-};
-//----------------------------------------------------------
+
+function increase_count(){
+    moves++;
+    increase_moves.innerHTML = moves ;
+ 
+    if(moves == 1)
+    {
+        second = 0; minute = 0 ;  hour = 0;
+        begin_timer();
+    }
+
+    if ( moves > 8 && moves < 12 )
+    { 
+        for( i = 0; i < 3; i++)
+        {
+            if(i > 1)
+            {
+                stars_fa[i].style.color = "#000";
+            }
+        }
+    }
+    else if (moves > 13 && moves < 21)
+    {
+        for( i= 0; i < 3; i++)
+        {
+            if(i > 0)
+            {
+                stars_fa[i].style.color = "#000";
+            }
+        }
+        
+    }
+    else if (moves >= 21  && moves < 32)
+    {
+        for( i= 0; i < 3; i++)
+        {
+            if(i == 0)
+            {
+                stars_fa[i].style.color = "#000";
+            }
+        }
+        
+    }
+    else if (moves >= 32)
+    {
+        for( i= 0; i < 3; i++)
+        {
+            if(i == 0)
+            {
+                stars_fa[i].style.color = "red";
+            }
+        }
+        
+    }
+    
+}
+
+//--------------------------------------------------------------------------------------------
+var sec = 0 , min = 0 ; H = 0 ;
+var x;
+
+function begin_timer() {
+
+    x = setInterval(function()
+    {
+        increase_timer.innerHTML = min+" minute(s)  "+ sec+" second(s)";
+        sec++;
+        if(sec == 60) // convert seconds to minutes
+        {
+            min++;
+            sec=0;
+        }
+        if(min == 60) // convert minutes to hours
+        {
+            H++;
+            min = 0;
+        }
+    },1000); 
+}
+//--------------------------------------------------------------------------------------------------
+
 //openCaed 
-function cardOpen() {
+function open_card() {
     open_cards.push(this);
+    
+    this.classList.toggle("disabled") ;
+    this.classList.toggle("open") ;
+    this.classList.toggle("show") ;
+
     var check_card = open_cards.length;
 
     if(check_card === 2){
+        
         increase_count();
-        if(open_cards[0].type === open_cards[1].type){
-            matched_cards();
-        } else {
-            unmatched_cards()();
+        if(open_cards[0].type === open_cards[1].type)
+        {
+            // then matched cards
+            open_cards[0].classList.add("match", "disabled");
+            open_cards[1].classList.add("match", "disabled");
+            open_cards[0].classList.remove("show", "open");
+            open_cards[1].classList.remove("show", "open");
+
+            open_cards = [];
+            
+        } 
+        else {
+            // else cards un matched
+            open_cards[0].classList.add("unmatched_card");
+            open_cards[1].classList.add("unmatched_card");
+
+                disable_choice();
+
+                setTimeout(function(){
+                    //remove classes 
+                open_cards[0].classList.remove("unmatched_card" , "show", "open");
+                open_cards[1].classList.remove("unmatched_card" , "show", "open");
+
+                enable_choice();
+
+                open_cards = [];
+                },1000);;
         }
     }
 };
 
 //----------------------------------------------------------
-function matched_cards(){
-    open_cards[0].classList.add("match", "disabled");
-    open_cards[1].classList.add("match", "disabled");
-    open_cards[0].classList.remove("show", "open");
-    open_cards[1].classList.remove("show", "open");
-
-    open_cards = [];
-}
-
-//--------------------------------------------------------------------------------------------
-
-// when  unmatched cards
-function unmatched_cards()
-{
-   open_cards[0].classList.add("unmatched_card");
-   open_cards[1].classList.add("unmatched_card");
-
-    disable_choice();
-
-    setTimeout(function(){
-        //remove classes 
-       open_cards[0].classList.remove("unmatched_card" , "show", "open");
-       open_cards[1].classList.remove("unmatched_card" , "show", "open");
-
-       enable_choice();
-
-       open_cards = [];
-    },1200);
-};
-//------------------------------------------------------------------------------------------
 function disable_choice(){
     Array.prototype.filter.call(cards, function(check){
 
@@ -149,64 +223,7 @@ function enable_choice(){
     });
 }
 //----------------------------------------------------------------------------------
-function increase_count(){
-    moves++;
-    increase_moves.innerHTML = moves ;
- 
-    if(moves == 1)
-    {
-        second = 0; minute = 0 ;  hour = 0;
-        startTimer();
-    }
 
-    if ( moves > 8 && moves < 12 )
-    { 
-        for( i= 0; i < 3; i++)
-        {
-            if(i > 1)
-            {
-                stars_fa[i].style.color = "#000";
-            }
-        }
-    }
-    else if (moves > 13 && moves < 21)
-    {
-        for( i= 0; i < 3; i++)
-        {
-            if(i > 0)
-            {
-                stars_fa[i].style.color = "#000";
-            }
-        }
-        
-    }
-    
-}
-
-//--------------------------------------------------------------------------------------------
-var sec = 0 , min = 0 ; H = 0 ;
-var x;
-
-function startTimer() {
-
-    x = setInterval(function()
-    {
-        increase_timer.innerHTML = min+" minute(s)  "+ sec+" second(s)";
-
-        sec++;
-        if(sec == 60) // convert seconds to minutes
-        {
-            min++;
-            sec=0;
-        }
-        if(min == 60) // convert minutes to hours
-        {
-            H++;
-            min = 0;
-        }
-    },1000); 
-}
-//--------------------------------------------------------------------------------------------------
 function display_msg(){
     if (matched_card.length == 16)
     {
@@ -218,16 +235,13 @@ function display_msg(){
         document.getElementById("starRating").innerHTML = stars_r;
         document.getElementById("totalTime").innerHTML = end_timer;
 
-        close_msg();
     };
 }
 //---------------------------------------------------------------------------------------------------
-function close_msg(){
-    hide_msg.addEventListener("click", function(e){
+function close_message(){
         show_msg.classList.remove("show");
         game();
-    });
-}
+    }
 
 //--------------------------------------------------------------------------------------------
 function play_again(){
@@ -240,8 +254,8 @@ function play_again(){
 for (var i = 0; i < cards.length; i++)
 {
     card = cards[i];
-    card.addEventListener("click", display_card);
-    card.addEventListener("click", cardOpen);
+    
+    card.addEventListener("click", open_card);
     card.addEventListener("click",display_msg);
 };
 
