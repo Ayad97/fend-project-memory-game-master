@@ -90,7 +90,7 @@ header h1 {
 	animation-duration: .75s;
 }
 .deck .card.unmatched_card{
-	background: #110e0e;
+	background: #080404;
 	color: rgb(235, 73, 73);
 	animation:shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
 	backface-visibility: visible !important;
@@ -127,11 +127,12 @@ header h1 {
 .score-panel .restart_game {
 	float: right;
 	cursor: pointer;
-	color: red;
+	color: #02ccba;
 }
 
 .fa-star {
 	color: #FFD700;
+	border: 1px solid #ffffff
 }
 
 .timer {
@@ -173,7 +174,7 @@ header h1 {
 #starRating li {
 	display: inline-block;
 }
-.popup {
+.congrat_msg {
 	margin: 70px auto;
 	padding: 20px;
 	background: #ffffff;
@@ -184,13 +185,13 @@ header h1 {
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
   
-.popup h2 {
+.congrat_msg h2 {
 	text-align: center;
 	color: #02ccba;
 	font-family: Tahoma, Arial, sans-serif;
 }
 
-.popup .fa-times-circle {
+.congrat_msg .fa-times-circle {
 	position: absolute;
 	top: 20px;
 	right: 30px;
@@ -204,13 +205,13 @@ header h1 {
 	
 }
 
-.popup .fa-times-circle:hover {
+.congrat_msg .fa-times-circle:hover {
 	color:red;
 	background-color: #ffffff;
 	cursor: pointer;
 }
 
-.popup .msg_win,
+.congrat_msg .msg_win,
 .about_game {
 	max-height: 30%;
 	overflow: auto;
@@ -218,10 +219,10 @@ header h1 {
 	color: #02ccba
     
 }
-.popup .msg_win h4{
+.congrat_msg .msg_win h4{
 	color: #FFD700
 }
-.popup .about_game span{
+.congrat_msg .about_game span{
 	color: #FFD700;
 }
 #again {
